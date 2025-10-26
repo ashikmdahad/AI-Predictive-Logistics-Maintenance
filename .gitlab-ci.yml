@@ -20,5 +20,6 @@ frontend:
   before_script:
     - cd frontend
     - npm ci
+    - npm install --no-save @rollup/rollup-linux-x64-gnu || true
   script:
     - npm run build

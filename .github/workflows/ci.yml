@@ -38,6 +38,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
       - name: Install dependencies
         run: npm ci
+      - name: Work around rollup optional dependency bug
+        run: npm install --no-save @rollup/rollup-linux-x64-gnu || true
       - name: Build
         run: npm run build
-
