@@ -1,0 +1,24 @@
+stages:
+  - test
+
+backend:
+  stage: test
+  image: python:3.11-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - pip install -r backend/requirements.txt
+  script:
+    - python -m pytest -q
+
+frontend:
+  stage: test
+  image: node:20-alpine
+  cache:
+    key: frontend
+    paths:
+      - frontend/node_modules
+  before_script:
+    - cd frontend
+    - npm ci
+  script:
+    - npm run build
